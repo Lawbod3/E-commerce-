@@ -1,5 +1,5 @@
 import BaseRepository from "./base.repository";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 class UserRepository extends BaseRepository {
   constructor() {
@@ -26,4 +26,4 @@ class UserRepository extends BaseRepository {
   }
 }
 
-export default new UserRepository();
+export default new UserRepository;

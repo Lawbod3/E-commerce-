@@ -10,6 +10,7 @@ const userSchema = new mongose.Schema(
       required: true,
       enum: Roles,
     },
+    banned: { type: Boolean, default: false },
   },
   {
     timestamps: true,
