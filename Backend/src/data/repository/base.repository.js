@@ -15,8 +15,8 @@ export default class BaseRepository {
     return this.model.findAll(filter);
   }
 
-  async updateById(id, update) {
-    return this.model.findByIdAndUpdate(id, update, { new: true });
+  async updateById(id, updatedData) {
+    return this.model.findByIdAndUpdate(id, updatedData, { new: true });
   }
 
   async deleteById(id) {

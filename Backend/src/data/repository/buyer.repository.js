@@ -6,12 +6,8 @@ class BuyerRepository extends BaseRepository {
     super(Buyer);
   }
 
-  async banBuyer(id) {
-    return this.model.findByIdAndUpdate(id, { banned: true }, { new: true });
-  }
-
-  async unbanBuyer(id) {
-    return this.model.findByIdAndUpdate(id, { banned: false }, { new: true });
+  async findByUserId(userId) {
+    return this.model.findOne({ userId });
   }
 }
 
