@@ -46,4 +46,14 @@ describe("UserRepository", () => {
     const bannedUser = await userRepo.banUser(user._id, { banned: true });
     expect(bannedUser.banned).toBe(true);
   });
+
+  it("should find user and unban", async () => {
+    const user = await userRepo.findByEmail("test@example.com");
+    expect(user).not.toBeNull();
+    expect(user.role).toBe("buyer");
+    const bannedUser = await userRepo.banUser(user._id, { banned: true });
+    expect(bannedUser.banned).toBe(true);
+    const unbannedUser = await userRepo.unBanUser(user._id);
+    expect(unbannedUser.banned).toBe(false);
+  });
 });
