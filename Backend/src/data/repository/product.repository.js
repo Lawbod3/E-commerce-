@@ -7,11 +7,11 @@ class ProductRepository extends BaseRepository {
   }
 
   async findBySellerId(sellerId) {
-    return this.model.find({ sellerId });
+    return await this.model.find({ sellerId });
   }
 
   async findByCategory(category) {
-    return this.model.find({ category });
+    return await this.model.find({ category });
   }
 }
 

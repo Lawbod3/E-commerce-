@@ -5,12 +5,16 @@ class UserRepository extends BaseRepository {
   constructor() {
     super(User);
   }
+
+  async create(data) {
+    return await this.model.create(data);
+  }
   async findByEmail(email) {
-    return this.model.findOne({ email });
+    return await this.model.findOne({ email });
   }
 
   async banUser(userId) {
-    return this.model.findByIdAndUpdate(
+    return await this.model.findByIdAndUpdate(
       userId,
       { banned: true },
       { new: true }
@@ -18,7 +22,7 @@ class UserRepository extends BaseRepository {
   }
 
   async unBanUser(userId) {
-    return this.model.findByIdAndUpdate(
+    return await this.model.findByIdAndUpdate(
       userId,
       { banned: false },
       { new: true }
@@ -26,4 +30,4 @@ class UserRepository extends BaseRepository {
   }
 }
 
-export default new UserRepository;
+export default new UserRepository();

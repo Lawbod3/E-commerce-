@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Roles } from "./role.enum.js";
 
 const sellerSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
@@ -6,4 +7,12 @@ const sellerSchema = new mongoose.Schema({
   lastname: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   address: String,
+  role: {
+    type: String,
+    required: true,
+    enum: Roles,
+    default: "seller",
+  },
 });
+
+export default mongoose.model("Seller", sellerSchema);

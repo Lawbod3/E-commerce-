@@ -6,16 +6,16 @@ class OrderRepository extends BaseRepository {
     super(Order);
   }
 
-  async findByBuyer(buyerId) {
-    return this.model.find({ buyerId }).sort({ createdAt: -1 }).limit(10);
+  async findByBuyerId(buyerId) {
+    return await this.model.find({ buyerId }).sort({ createdAt: -1 }).limit(10);
   }
 
-  async findBySeller(sellerId) {
-    return this.model.find({ sellerId }).sort({ createdAt: -1 }).limit(10);
+  async findBySellerId(sellerId) {
+    return await this.model.find({ sellerId }).sort({ createdAt: -1 }).limit(10);
   }
 
   async findById(orderId) {
-    return this.model.findById(orderId);
+    return await this.model.findById(orderId);
   }
 }
 

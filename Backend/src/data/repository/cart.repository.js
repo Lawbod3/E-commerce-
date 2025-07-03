@@ -7,7 +7,7 @@ class CartRepository extends BaseRepository {
   }
 
   async findByBuyerId(buyerId) {
-    return this.model.findOne({ buyerId });
+    return await this.model.findOne({ buyerId });
   }
 }
 

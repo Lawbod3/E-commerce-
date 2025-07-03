@@ -7,7 +7,7 @@ class PaymentRepository extends BaseRepository {
   }
 
   async findByOrderId(orderId) {
-    return this.model.findOne({ orderId });
+    return await this.model.findOne({ orderId });
   }
 }
 

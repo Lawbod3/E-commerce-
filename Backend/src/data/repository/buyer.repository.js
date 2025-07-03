@@ -6,8 +6,12 @@ class BuyerRepository extends BaseRepository {
     super(Buyer);
   }
 
+  async findByPhoneNumber(phoneNumber) {
+    return await this.model.findOne({ phoneNumber });
+  }
+
   async findByUserId(userId) {
-    return this.model.findOne({ userId });
+    return await this.model.findOne({ userId });
   }
 }
 

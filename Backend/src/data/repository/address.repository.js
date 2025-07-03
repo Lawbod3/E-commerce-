@@ -7,7 +7,7 @@ class AddressRepository extends BaseRepository {
   }
 
   async findByUserId(userId) {
-    return this.model.find({ userId });
+    return await this.model.find({ userId });
   }
 }
 

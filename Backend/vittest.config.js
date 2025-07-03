@@ -1,17 +1,11 @@
 import { defineConfig } from "vitest/config";
 import path from "path";
 
-export default defineConfig({
+export default {
   test: {
-    globals: true,
-    environment: "node",
-    coverage: {
-      reporter: ["text", "json", "html"],
+    sequence: {
+      setupFiles: ["./vitest.setup.js"],
     },
+    isolate: false,
   },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "Backend/src"),
-    },
-  },
-});
+};

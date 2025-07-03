@@ -7,11 +7,19 @@ class AdminRepository extends BaseRepository {
   }
 
   async banAdmin(id) {
-    return this.model.findByIdAndUpdate(id, { banned: true }, { new: true });
+    return await this.model.findByIdAndUpdate(
+      id,
+      { banned: true },
+      { new: true }
+    );
   }
 
   async unbanAdmin(id) {
-    return this.model.findByIdAndUpdate(id, { banned: false }, { new: true });
+    return await this.model.findByIdAndUpdate(
+      id,
+      { banned: false },
+      { new: true }
+    );
   }
 }
 

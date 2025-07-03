@@ -4,22 +4,26 @@ export default class BaseRepository {
   }
 
   async create(data) {
-    return this.model.create(data);
+    return await this.model.create(data);
   }
 
   async findById(id) {
-    return this.model.findById(id);
+    return await this.model.findById(id);
   }
 
   async findAll(filter = {}) {
-    return this.model.findAll(filter);
+    return await this.model.find(filter);
   }
 
   async updateById(id, updatedData) {
-    return this.model.findByIdAndUpdate(id, updatedData, { new: true });
+    return await this.model.findByIdAndUpdate(id, updatedData, { new: true });
   }
 
   async deleteById(id) {
-    return this.model.deleteById(id);
+    return await this.model.deleteByIdAndDelete(id);
+  }
+
+  async deleteAll() {
+    return await this.model.deleteMany({});
   }
 }
