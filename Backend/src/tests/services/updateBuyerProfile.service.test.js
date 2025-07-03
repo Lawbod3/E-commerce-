@@ -13,6 +13,7 @@ import BuyerReg from "../../services/buyerService/register.buyerService";
 import Buyer from "../../data/models/buyer.model.js";
 import User from "../../data/models/user.model.js";
 import Register from "../../services/userService/Register.userService.js";
+import UpdateBuyer from "../../services/buyerService/updateProfile.buyerService.js";
 
 dotenv.config();
 
@@ -58,5 +59,13 @@ test("that buyer can get profile", async () => {
 
   const profile = await BuyerProfile.getProfile(user._id);
   expect(profile).toBeTruthy();
-});
 
+  const updatedData = {
+    firstname: "Martin",
+    phoneNumber: "1234567890",
+    address: "126 Main St",
+  };
+
+  const updatedBuyer = await UpdateBuyer.profile(user._id, updatedData);
+  expect(updatedBuyer).toBeTruthy();
+});

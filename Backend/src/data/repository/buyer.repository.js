@@ -13,6 +13,10 @@ class BuyerRepository extends BaseRepository {
   async findByUserId(userId) {
     return await this.model.findOne({ userId });
   }
+
+  async updateBuyer(userId , updatedData){
+    return await this.model.findOneAndUpdate({userId}, updatedData, { new: true });
+  }
 }
 
 export default new BuyerRepository();
