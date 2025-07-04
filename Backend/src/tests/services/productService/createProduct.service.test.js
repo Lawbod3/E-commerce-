@@ -95,3 +95,224 @@ test("that create product can catch error in data", async () => {
     "name is required"
   );
 });
+
+test("that create product can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    description: "This is a test product",
+    price: 9.99,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "quantity is required"
+  );
+});
+
+test("that create product can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    price: 9.99,
+    category: "ELECTRONICS",
+    description: "This is a test product",
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "seller id is required"
+  );
+});
+
+test("that create product can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    price: 9.99,
+    sellerId: seller._id,
+    description: "This is a test product",
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "category is required"
+  );
+});
+
+test("that create product can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    description: "This is a test product",
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "price is required"
+  );
+});
+
+test("that create product can catch price error if negative or equal to 0", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    description: "This is a test product",
+    price: -1,
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "price should be greater than 0"
+  );
+});
+
+test("that create product can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    price: 9.99,
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "description is required"
+  );
+});
+
+test("that create product dont take invalid fields", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    name: "iron",
+    quantity: 10,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    description: "This is a test product",
+    price: 9.99,
+    invalidField: "invalid",
+  };
+
+  await expect(CreateProduct.create(productData)).rejects.toThrow(
+    "Unexpected fields or invalid fields"
+  );
+ 
+});
