@@ -8,9 +8,9 @@ import {
 } from "vitest";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Register from "../../services/userService/Register.userService.js";
-import Login from "../../services/userService/login.userService.js";
-import User from "../../data/models/user.model.js";
+import Register from "../../../services/userService/Register.userService.js";
+import Login from "../../../services/userService/login.userService.js";
+import User from "../../../data/models/user.model.js";
 dotenv.config();
 
 const userData = {

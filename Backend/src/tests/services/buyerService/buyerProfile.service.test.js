@@ -8,12 +8,12 @@ import {
 } from "vitest";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import BuyerProfile from "../../services/buyerService/profile.buyerService.js";
-import BuyerReg from "../../services/buyerService/register.buyerService";
-import Buyer from "../../data/models/buyer.model.js";
-import User from "../../data/models/user.model.js";
-import Register from "../../services/userService/Register.userService.js";
-import UpdateBuyer from "../../services/buyerService/updateProfile.buyerService.js";
+import BuyerProfile from "../../../services/buyerService/profile.buyerService.js";
+import BuyerReg from "../../../services/buyerService/register.buyerService.js";
+import Buyer from "../../../data/models/buyer.model.js";
+import User from "../../../data/models/user.model.js";
+import Register from "../../../services/userService/Register.userService.js";
+import UpdateBuyer from "../../../services/buyerService/updateProfile.buyerService.js";
 
 dotenv.config();
 

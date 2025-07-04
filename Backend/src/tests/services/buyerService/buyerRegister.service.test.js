@@ -9,10 +9,10 @@ import {
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import BuyerReg from "../../services/buyerService/register.buyerService";
-import Buyer from "../../data/models/buyer.model.js";
-import User from "../../data/models/user.model.js";
-import Register from "../../services/userService/Register.userService.js";
+import BuyerReg from "../../../services/buyerService/register.buyerService.js";
+import Buyer from "../../../data/models/buyer.model.js";
+import User from "../../../data/models/user.model.js";
+import Register from "../../../services/userService/Register.userService.js";
 
 dotenv.config();
 
