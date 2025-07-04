@@ -38,7 +38,7 @@ afterEach(async () => {
 
 test("BuyerService can Register buyer", async () => {
   const userData = {
-    email: "bode@example.com",
+    email: `test_${Date.now()}@example.com`,
     password: "testPassword",
     role: "admin",
   };

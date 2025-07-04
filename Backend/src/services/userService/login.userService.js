@@ -1,6 +1,6 @@
 import userValidation from "../../utils/validations/userService.validation.js";
 import userRepository from "../../data/repository/user.repository.js";
-import { decryptPassword } from "../../utils/security/password.decrypt.js";
+import { decryptPassword } from "../authService/authenticationService/password.decrypt.js";
 
 class Login {
   async user(data) {

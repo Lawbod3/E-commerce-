@@ -8,12 +8,12 @@ import {
 } from "vitest";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import BuyerProfile from "../../services/buyerService/profile.buyerService.js";
-import BuyerReg from "../../services/buyerService/register.buyerService";
-import Buyer from "../../data/models/buyer.model.js";
+import SellerProfile from "../../services/sellerService/getProfile.sellerService.js";
+import SellerReg from "../../services/sellerService/createProfile.sellerService.js";
+import Seller from "../../data/models/seller.model.js";
 import User from "../../data/models/user.model.js";
 import Register from "../../services/userService/Register.userService.js";
-import UpdateBuyer from "../../services/buyerService/updateProfile.buyerService.js";
+import UpdateSeller from "../../services/sellerService/updateProfile.sellerService.js";
 
 dotenv.config();
 
@@ -29,43 +29,39 @@ afterAll(async () => {
 
 beforeEach(async () => {
   await User.deleteMany({});
-  await Buyer.deleteMany({});
+  await Seller.deleteMany({});
 });
 
 afterEach(async () => {
   await User.deleteMany({});
-  await Buyer.deleteMany({});
+  await Seller.deleteMany({});
 });
 
-test("that buyer can get profile", async () => {
+test("that Seller can get profile", async () => {
   const userData = {
-    email: "bode@example.com",
-    password: "testPassword",
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
     role: "admin",
   };
-
   const user = await Register.user(userData);
-
   const data = {
     userId: user._id,
     firstname: "John",
     lastname: "Doe",
-    phoneNumber: "1234567890",
+    company: "Test Company",
     address: "123 Main St",
+    phoneNumber: "1234567890",
   };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
 
-  const buyer = await BuyerReg.register(data);
-  expect(buyer).toBeTruthy();
-
-  const profile = await BuyerProfile.getProfile(user._id);
+  const profile = await SellerProfile.getProfile(user._id);
   expect(profile).toBeTruthy();
 
   const updatedData = {
-    firstname: "Martin",
-    phoneNumber: "1234567890",
-    address: "126 Main St",
+    phoneNumber: "1234566787890",
   };
 
-  const updatedBuyer = await UpdateBuyer.profile(user._id, updatedData);
-  expect(updatedBuyer).toBeTruthy();
+  const updatedSeller = await UpdateSeller.profile(user._id, updatedData);
+  expect(updatedSeller).toBeTruthy();
 });
