@@ -42,5 +42,16 @@ class ProductValidate {
       throw new Error("description is required");
     }
   }
+
+  static async updateProduct(data) {
+    const allowFields = ["name", "quantity", "price", "description"];
+    const dataKeys = Object.keys(data);
+    const invalidFields = dataKeys.filter(
+      (field) => !allowFields.includes(field)
+    );
+    if (invalidFields.length > 0) {
+      throw new Error("Unexpected fields or invalid fields");
+    }
+  }
 }
 export default ProductValidate;

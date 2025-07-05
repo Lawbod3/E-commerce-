@@ -2,11 +2,19 @@ import ProductRepository from "../../data/repository/product.repository";
 
 class GetProduct {
   async byId(id) {
-    return await ProductRepository.findById(id);
+    try {
+      return await ProductRepository.findById(id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async bySellerId(sellerId) {
-    return await ProductRepository.findBySellerId(sellerId);
+    try {
+      return await ProductRepository.findBySellerId(sellerId);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 

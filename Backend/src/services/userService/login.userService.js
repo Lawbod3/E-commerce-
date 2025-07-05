@@ -4,16 +4,19 @@ import { decryptPassword } from "../authService/authenticationService/password.d
 
 class Login {
   async user(data) {
-    await userValidation.validateLogin(data);
-    const user = await userRepository.findByEmail(data.email);
-    if (!user) {
-      throw new Error("User not found");
+    try {
+      await userValidation.validateLogin(data);
+      const user = await userRepository.findByEmail(data.email);
+      if (!user) throw new Error("User not found");
+      const isPasswordValid = await decryptPassword(
+        data.password,
+        user.password
+      );
+      if (!isPasswordValid) throw new Error("Invalid password");
+      return user;
+    } catch (error) {
+      throw new Error(error.message);
     }
-    const isPasswordValid = await decryptPassword(data.password, user.password);
-    if (!isPasswordValid) {
-      throw new Error("Invalid password");
-    }
-    return user;
   }
 }
 

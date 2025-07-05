@@ -4,13 +4,15 @@ import userRepository from "../../data/repository/user.repository.js";
 
 class BuyerReg {
   async register(data) {
-    await buyerValidate.Registration(data);
-    const user = await userRepository.findById(data.userId);
-    if (!user) {
-      throw new Error("User does not exist");
+    try {
+      await buyerValidate.Registration(data);
+      const user = await userRepository.findById(data.userId);
+      if (!user) throw new Error("User does not exist");
+      const createdBuyer = await buyerRepository.create(data);
+      return createdBuyer;
+    } catch (error) {
+      throw new Error(error.message);
     }
-    const createdBuyer = await buyerRepository.create(data);
-    return createdBuyer;
   }
 }
 

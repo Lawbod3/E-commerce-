@@ -68,8 +68,6 @@ test("that product can be Updated", async () => {
     quantity: 12,
     description: "This is a test product",
     price: 9.99,
-    sellerId: seller._id,
-    category: "ELECTRONICS",
     name: "Test Product",
   };
 
@@ -78,4 +76,48 @@ test("that product can be Updated", async () => {
     updatedProductData
   );
   expect(updatedProduct).toBeTruthy();
+});
+
+test("that product update can catch error in data", async () => {
+  const userData = {
+    email: `test_${Date.now()}@example.com`,
+    password: "testpassword",
+    role: "admin",
+  };
+  const user = await Register.user(userData);
+  const data = {
+    userId: user._id,
+    firstname: "John",
+    lastname: "Doe",
+    company: "Test Company",
+    address: "123 Main St",
+    phoneNumber: "1234567890",
+  };
+  const seller = await SellerReg.register(data);
+  expect(seller).toBeTruthy();
+
+  const productData = {
+    quantity: 10,
+    description: "This is a test product",
+    price: 9.99,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    name: "Test Product",
+  };
+
+  const product = await CreateProduct.create(productData);
+  expect(product).toBeTruthy();
+
+  const updatedProductData = {
+    quantity: 12,
+    description: "This is a test product",
+    price: 9.99,
+    sellerId: seller._id,
+    category: "ELECTRONICS",
+    name: "Test Product",
+  };
+
+  await expect(
+    UpdateProduct.update(product._id, updatedProductData)
+  ).rejects.toThrow("Unexpected fields or invalid fields");
 });

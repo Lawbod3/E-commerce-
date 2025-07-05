@@ -3,7 +3,11 @@ import buyerRepository from "../../data/repository/buyer.repository.js";
 
 class BuyerProfile {
   async getProfile(userId) {
-    return await buyerRepository.findByUserId(userId);
+    try {
+      return await buyerRepository.findByUserId(userId);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 export default new BuyerProfile();
