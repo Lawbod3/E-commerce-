@@ -13,6 +13,18 @@ class ProductRepository extends BaseRepository {
   async findByCategory(category) {
     return await this.model.find({ category });
   }
+
+  async setDeleteToTrue(id) {
+    return await this.model.findByIdAndUpdate(
+      id,
+      { delete: true },
+      { new: true }
+    );
+  }
+
+  async getAll() {
+    return await this.model.find();
+  }
 }
 
 export default new ProductRepository();

@@ -10,6 +10,14 @@ const productSchema = new mongoose.Schema(
     sellerId: { type: mongoose.Schema.Types.ObjectId, ref: "Seller" },
     category: { type: String, enum: Categories, required: true },
     postedDate: { type: Date, default: Date.now },
+    status: {
+      type: String,
+      enum: ["AVAILABLE", "UNAVAILABLE"],
+      default: "AVAILABLE",
+    },
+    image: String,
+    banned: { type: Boolean, default: false },
+    delete: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
