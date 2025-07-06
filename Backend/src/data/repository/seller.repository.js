@@ -7,17 +7,29 @@ class SellerRepository extends BaseRepository {
   }
 
   async findByPhoneNumber(phoneNumber) {
-    return await this.model.findOne({ phoneNumber });
+    try {
+      return await this.model.findOne({ phoneNumber });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async findByUserId(userId) {
-    return await this.model.findOne({ userId });
+    try {
+      return await this.model.findOne({ userId });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async updateBuyer(userId, updatedData) {
-    return await this.model.findOneAndUpdate({ userId }, updatedData, {
-      new: true,
-    });
+    try {
+      return await this.model.findOneAndUpdate({ userId }, updatedData, {
+        new: true,
+      });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 

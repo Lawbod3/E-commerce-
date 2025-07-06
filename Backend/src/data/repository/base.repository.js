@@ -4,26 +4,50 @@ export default class BaseRepository {
   }
 
   async create(data) {
-    return await this.model.create(data);
+    try {
+      return await this.model.create(data);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async findById(id) {
-    return await this.model.findById(id);
+    try {
+      return await this.model.findById(id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async findAll(filter = {}) {
-    return await this.model.find(filter);
+    try {
+      return await this.model.find(filter);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async updateById(id, updatedData) {
-    return await this.model.findByIdAndUpdate(id, updatedData, { new: true });
+    try {
+      return await this.model.findByIdAndUpdate(id, updatedData, { new: true });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async deleteById(id) {
-    return await this.model.deleteByIdAndDelete(id);
+    try {
+      return await this.model.deleteByIdAndDelete(id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async deleteAll() {
-    return await this.model.deleteMany({});
+    try {
+      return await this.model.deleteMany({});
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }

@@ -55,6 +55,9 @@ test("BuyerService can Register buyer", async () => {
 
   const buyer = await BuyerReg.register(data);
   expect(buyer).toBeTruthy();
+
+  const userUpdated = await User.findById(user._id);
+  expect(userUpdated.role).toBe("buyer");
 });
 
 test("BuyerReg can catch error in data", async () => {

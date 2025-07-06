@@ -1,5 +1,5 @@
 import BaseRepository from "./base.repository.js";
-import ShoppingCart from "../../models/shoppingCart.model.js";
+import ShoppingCart from "../models/shoppingCart.model.js";
 
 class CartRepository extends BaseRepository {
   constructor() {
@@ -7,7 +7,11 @@ class CartRepository extends BaseRepository {
   }
 
   async findByBuyerId(buyerId) {
-    return await this.model.findOne({ buyerId });
+    try {
+      return await this.model.findOne({ buyerId });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 

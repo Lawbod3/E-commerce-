@@ -52,6 +52,9 @@ test("that Seller can create profile", async () => {
   };
   const createdSeller = await SellerReg.register(data);
   expect(createdSeller).toBeTruthy();
+
+  const userRoleUpdated = await User.findById(user._id);
+  expect(userRoleUpdated.role).toBe("seller");
 });
 
 test("that seller registration can catch error in data that dont include firstname", async () => {

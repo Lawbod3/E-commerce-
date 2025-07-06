@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: Roles,
-      default: "user",
+      default: "buyer",
     },
     banned: { type: Boolean, default: false },
   },

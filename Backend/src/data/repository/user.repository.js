@@ -7,26 +7,42 @@ class UserRepository extends BaseRepository {
   }
 
   async create(data) {
-    return await this.model.create(data);
+    try {
+      return await this.model.create(data);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
   async findByEmail(email) {
-    return await this.model.findOne({ email });
+    try {
+      return await this.model.findOne({ email });
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async banUser(userId) {
-    return await this.model.findByIdAndUpdate(
-      userId,
-      { banned: true },
-      { new: true }
-    );
+    try {
+      return await this.model.findByIdAndUpdate(
+        userId,
+        { banned: true },
+        { new: true }
+      );
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async unBanUser(userId) {
-    return await this.model.findByIdAndUpdate(
-      userId,
-      { banned: false },
-      { new: true }
-    );
+    try {
+      return await this.model.findByIdAndUpdate(
+        userId,
+        { banned: false },
+        { new: true }
+      );
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
 

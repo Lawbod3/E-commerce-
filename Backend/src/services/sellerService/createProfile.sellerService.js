@@ -9,6 +9,7 @@ class SellerReg {
       await ValidateSeller.registration(data);
       const user = await userRepository.findById(data.userId);
       if (!user) throw new Error("User does not exist");
+      await userRepository.updateById(data.userId, { role: "seller" });
       const seller = await sellerRepository.create(data);
       if (!seller) throw new Error("Failed to create seller profile");
       return seller;

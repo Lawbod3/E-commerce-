@@ -8,6 +8,7 @@ class BuyerReg {
       await buyerValidate.Registration(data);
       const user = await userRepository.findById(data.userId);
       if (!user) throw new Error("User does not exist");
+      await userRepository.updateById(data.userId, { role: "buyer" });
       const createdBuyer = await buyerRepository.create(data);
       return createdBuyer;
     } catch (error) {
