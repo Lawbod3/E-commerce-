@@ -52,6 +52,6 @@ test("Create cart service", async () => {
   const buyer = await BuyerReg.register(data);
   expect(buyer).toBeTruthy();
 
-  const cart = await CreateCart.create(buyer._id);
+  const cart = await CreateCart.create(user._id);
   expect(cart).toBeTruthy();
 });

@@ -6,9 +6,23 @@ class CartRepository extends BaseRepository {
     super(ShoppingCart);
   }
 
+  
+
   async findByBuyerId(buyerId) {
     try {
       return await this.model.findOne({ buyerId });
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async addToCart(buyerId, productId) {
+    try {
+      return await this.model.findOneAndUpdate(
+        { buyerId },
+        { $addToSet: { products: productId } },
+        { new: true }
+      );
     } catch (error) {
       throw new Error(error.message);
     }

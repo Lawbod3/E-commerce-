@@ -6,6 +6,8 @@ class ProductRepository extends BaseRepository {
     super(Product);
   }
 
+  
+
   async findBySellerId(sellerId) {
     return await this.model.find({ sellerId });
   }
